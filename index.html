@@ -3,8 +3,7 @@
 <head>
 <title>Converter</title>
 <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!-- <link rel="stylesheet" href="https://andreymrovol.github.io/material/css/materialize.css"> -->
+<link rel="stylesheet" href="https://andreymrovol.github.io/material/css/materialize.css">
 <script defer src="https://andreymrovol.github.io/material/js/bin/materialize.js"></script>
 
 <style>
@@ -23,8 +22,9 @@ body {
   flex-wrap: wrap;
 }
 
-ul{
-  list-style-type: disc;
+ul, li{
+  list-style-type: disc !important;
+  margin-left: 10px;
 }
 
 .cell{
@@ -32,41 +32,89 @@ ul{
  The percent can be px. It just represents your minimum starting width.
   */
   margin: 10px;
-  background: tomato;
+  background: rgb(255, 140, 0);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   margin-top: 30px;
+  border-radius: 10px;
+  padding: 15px;
 }
 
+.leftnav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 250px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: black; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  color: white;
+}
+
+.main{
+  margin-left: 250px;
+}
+
+.collection-item{
+  color: white;
+  background-color: black;
+  cursor:pointer;
+}
+
+.collection .collection-item {
+background-color: black;
+}
 </style>
 </head>
 
 <body>
 
+  <div class="leftnav">
+
+    <ul class="collection" id="sidenavcollection"></ul>
+
+<!-- <ul>
+    <li>
+      <label>
+        <input type="checkbox" />
+        <span>Red</span>
+      </label>
+    </li>
+
+    <li>
+      <label>
+        <input type="checkbox" />
+        <span>Red</span>
+      </label>
+    </li>
+
+    <li>
+      <label>
+        <input type="checkbox" />
+        <span>Red</span>
+      </label>
+    </li>
+
+  </ul> -->
+  </div>
+
+  <div class="main">
+
   <div class="r">
-
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-
+      <div class="cell" id="Normal"></div>
+      <div class="cell" id="Prestige"></div>
     </div>
+
+  </div>
 
 
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
 <script src="./index.js"></script>
-
-<!-- https://andreymrovol.github.io/fortnitechallenges/challenges.json -->
 
 </body>
 </html>
