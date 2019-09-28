@@ -7,5 +7,12 @@
           "name": "Fortnite Challenges",
           "description": "description or purpose of your progressive web app",
           "lang": "en-US",
+          "icons": [
+          {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          }
+          ],
           "start_url": "index.html?launcher=true"
           }
