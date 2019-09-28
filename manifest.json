@@ -1,0 +1,11 @@
+{
+          "background_color": "#fff",
+          "display": "standalone",
+          "orientation":"landscape",
+          "theme_color": "#fff",
+          "short_name": "Fortnite Challenges",
+          "name": "Fortnite Challenges",
+          "description": "description or purpose of your progressive web app",
+          "lang": "en-US",
+          "start_url": "index.html?launcher=true"
+          }

@@ -22,11 +22,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* ul, li{
-  list-style-type: disc !important;
-  margin-left: 10px;
-} */
-
 span{
   color: white;
 }
@@ -47,9 +42,6 @@ span{
   margin: 10px;
   background: #323232;
   color: white;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   margin-bottom: 20px;
   margin-top: 20px;
   border-radius: 10px;
@@ -58,6 +50,7 @@ span{
 
 span::after{
   background-color: #f57c00 !important;
+  border-color: #0288d1 !important;
 }
 
 [type=checkbox].filled-in:checked + span:not(.lever):after{
@@ -101,7 +94,7 @@ span::after{
 
   <div class="main">
 
-  <div class="r">
+    <div class="r">
       <div class="cell" id="Normal"></div>
       <div class="cell" id="Prestige"></div>
     </div>
@@ -110,6 +103,14 @@ span::after{
 
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
 <script src="./index.js"></script>
+
+<script>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('./sw.js')
+           .then(function() { console.log("Service Worker Registered"); });
+}
+</script>
 
 </body>
 </html>
