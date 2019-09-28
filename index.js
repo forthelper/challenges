@@ -1,8 +1,10 @@
 var counter = 1;
 var challengesJSON = {};
+var checkboxes;
 
 var sidenavList = $("#sidenavcollection");
 
+var currWeek;
 
 // Transform JSON data into ready form
 function dataReady(data){
@@ -29,14 +31,27 @@ function dataReady(data){
 }
 
 // Transform array into ul
-function makeListFromArray(array){
+function makeListFromArray(array, week, type){
 
 var ul = document.createElement('ul');
   for(var i=0; i<array.length; i++){
     var li = document.createElement('li');
 
-    let s = array[i]["description"] + " (" + array[i]["objective"] + ")"
-    li.innerHTML = s;
+    let label = document.createElement("label");
+    let check = document.createElement("input");
+    check.setAttribute("type", "checkbox");
+    check.className = "filled-in";
+    check.setAttribute("value", week + "/" + type + "/" + i)
+    check.setAttribute("onchange", "setCheckboxes()")
+    let sp = document.createElement("span");
+
+    let s = array[i]["description"] + " (" + array[i]["objective"] + ")";
+    sp.innerHTML = s;
+
+    label.appendChild(check);
+    label.appendChild(sp);
+    li.appendChild(label);
+
     ul.appendChild(li);
   }
 
@@ -63,9 +78,25 @@ function loadWeek(week){
   // $("#Normal").html(w["Normal"]);
   console.log(w)
 
-  $("#Normal").html("");
-  $("#Prestige").html("");
+  $("#Normal").html("").append(makeListFromArray(normal, week, "n"));
+  $("#Prestige").html("").append(makeListFromArray(prestige, week, "p"));
 
-  $("#Normal").append(makeListFromArray(normal))
-  $("#Prestige").append(makeListFromArray(prestige))
+  loadCheckboxes();
+}
+
+function setCheckboxes(){
+  checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+  for (i = 0; i < checkboxes.length; i++) {
+        localStorage.setItem(checkboxes[i].value, checkboxes[i].checked);
+    }
+    console.log(localStorage)
+}
+
+function loadCheckboxes(){
+  checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+  for (i = 0; i < checkboxes.length; i++) {
+       checkboxes[i].checked = localStorage.getItem(checkboxes[i].value) === 'true' ? true:false;
+    }
 }
