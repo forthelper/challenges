@@ -1,27 +1,33 @@
-var counter = 1;
 var challengesJSON = {};
-var checkboxes;
 
 var sidenavList = $("#sidenavcollection");
-
-var currWeek;
 
 // Transform JSON data into ready form
 function dataReady(data){
   challengesJSON = data;
 
-
   for(var i=1; i<=10; i++){
-    var week = data[i]["Normal"];
-
     let sli = document.createElement('a');
     sli.innerHTML = data[i]["Title"];
-    sli.className = "collection-item"
+    sli.className = "collection-item waves-effect"
     sli.id = "s" + i;
+
+    let l = localStorage.getItem('progress' + i);
+    if(l == null){
+      l = 14;
+    }
+
+    let bold = document.createElement('b');
+    let left = document.createElement('span');
+    left.innerHTML = "   " + l + " left";
+    left.style['color'] = "yellow";
+
+    bold.appendChild(left);
 
     let onc = "loadWeek(" + i + ")";
 
     sli.setAttribute('onclick', onc);
+    sli.appendChild(bold);
 
     sidenavList.append(sli);
 
@@ -39,6 +45,7 @@ var ul = document.createElement('ul');
 
     let label = document.createElement("label");
     let check = document.createElement("input");
+    label.className = "waves-effect bt"
     check.setAttribute("type", "checkbox");
     check.className = "filled-in";
     check.setAttribute("value", week + "/" + type + "/" + i)
@@ -60,8 +67,6 @@ var ul = document.createElement('ul');
 
 // Get all challenges in JSON form
 $.getJSON( "https://andreymrovol.github.io/fortnitechallenges/challenges.json", function( data ) {
-  console.warn(data);
-
   dataReady(data);
 });
 
@@ -75,26 +80,34 @@ function loadWeek(week){
   $(".active").removeClass("active");
   $("#s" + week).addClass("active")
 
-  // $("#Normal").html(w["Normal"]);
-  console.log(w)
-
   $("#Normal").html("").append(makeListFromArray(normal, week, "n"));
   $("#Prestige").html("").append(makeListFromArray(prestige, week, "p"));
 
   loadCheckboxes();
 }
 
+// On checkbox change update all
 function setCheckboxes(){
-  checkboxes = document.querySelectorAll('input[type=checkbox]');
+  var checkboxes = document.querySelectorAll('input[type=checkbox]');
+  let amount = 0;
+  let w;
 
   for (i = 0; i < checkboxes.length; i++) {
         localStorage.setItem(checkboxes[i].value, checkboxes[i].checked);
+
+        if(checkboxes[i].checked == true){
+          amount += 1;
+        }
+
+        w = checkboxes[i].value.split("/")[0];
     }
-    console.log(localStorage)
+
+    localStorage.setItem("progress" + w, (14 - amount));
 }
 
+// Load checkboxes on page load
 function loadCheckboxes(){
-  checkboxes = document.querySelectorAll('input[type=checkbox]');
+  var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
   for (i = 0; i < checkboxes.length; i++) {
        checkboxes[i].checked = localStorage.getItem(checkboxes[i].value) === 'true' ? true:false;

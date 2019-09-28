@@ -4,7 +4,6 @@
 <title>Fortnite Challenges</title>
 <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://andreymrovol.github.io/material/css/materialize.css">
-<link rel="stylesheet" href="./fonts/font.css">
 <script defer src="https://andreymrovol.github.io/material/js/bin/materialize.js"></script>
 
 <style>
@@ -32,12 +31,21 @@ span{
   color: white;
 }
 
+.bt{
+  display: inline-block;
+  transition: background-color .2s ease-out;
+  background-color: #fb8c00;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 4px;
+}
+
 .cell{
   flex: 1 0 47%; /* The important bit. This percentage decides your columns.
  The percent can be px. It just represents your minimum starting width.
   */
   margin: 10px;
-  background: rgb(255, 140, 0);
+  background: #f57c00;
   color: white;
   /* display: flex;
   align-items: center;
@@ -57,7 +65,7 @@ span{
   left: 0;
   background-color: #121212; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+  padding-top: 5px;
   color: white;
 }
 
@@ -80,34 +88,6 @@ span{
   <div class="leftnav">
 
     <ul class="collection" id="sidenavcollection"></ul>
-
-    <div class="progress">
-      <div class="determinate" style="width: 20%"></div>
-  </div>
-
-<!-- <ul>
-    <li>
-      <label>
-        <input type="checkbox" />
-        <span>Red</span>
-      </label>
-    </li>
-
-    <li>
-      <label>
-        <input type="checkbox" />
-        <span>Red</span>
-      </label>
-    </li>
-
-    <li>
-      <label>
-        <input type="checkbox" />
-        <span>Red</span>
-      </label>
-    </li>
-
-  </ul> -->
   </div>
 
   <div class="main">
@@ -118,7 +98,6 @@ span{
     </div>
 
   </div>
-
 
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
 <script src="./index.js"></script>
