@@ -17,17 +17,24 @@ function dataReady(data){
       l = 14;
     }
 
-    let bold = document.createElement('b');
     let left = document.createElement('span');
-    left.innerHTML = "   " + l + " left";
-    left.style['color'] = "yellow";
-
-    bold.appendChild(left);
+    left.innerHTML = "  " + l;
+    left.id = "l" + i;
+    left.style['color'] = "white";
+    left.style['background-color'] = "#039be5";
+    left.style['border-radius'] = "20px";
+    left.style['padding'] = "2px";
+    left.style['width'] = "20px";
+    left.style['height'] = "20px";
+    left.style['position'] = "absolute";
+    left.style['right'] = "10px";
+    left.style['line-height'] = "20px";
+    left.style['text-align'] = "center";
 
     let onc = "loadWeek(" + i + ")";
 
     sli.setAttribute('onclick', onc);
-    sli.appendChild(bold);
+    sli.appendChild(left);
 
     sidenavList.append(sli);
 
@@ -103,6 +110,7 @@ function setCheckboxes(){
     }
 
     localStorage.setItem("progress" + w, (14 - amount));
+    $("#l"+w).html((14 - amount))
 }
 
 // Load checkboxes on page load

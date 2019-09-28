@@ -34,8 +34,8 @@ span{
 .bt{
   display: inline-block;
   transition: background-color .2s ease-out;
-  background-color: #fb8c00;
-  border-radius: 5px;
+  background-color: #f57c00;
+  border-radius: 7px;
   margin: 2px;
   padding: 4px;
 }
@@ -45,7 +45,7 @@ span{
  The percent can be px. It just represents your minimum starting width.
   */
   margin: 10px;
-  background: #f57c00;
+  background: #323232;
   color: white;
   /* display: flex;
   align-items: center;
@@ -54,6 +54,15 @@ span{
   margin-top: 20px;
   border-radius: 10px;
   padding: 5px 15px;
+}
+
+span::after{
+  background-color: #f57c00 !important;
+}
+
+[type=checkbox].filled-in:checked + span:not(.lever):after{
+  background-color: #0288d1 !important;
+  border: 0 !important;
 }
 
 .leftnav {
