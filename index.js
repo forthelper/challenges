@@ -21,7 +21,7 @@ function dataReady(data){
     left.innerHTML = "  " + l;
     left.id = "l" + i;
     left.style['color'] = "white";
-    left.style['background-color'] = "#039be5";
+    left.style['background-color'] = "#e65100";
     left.style['border-radius'] = "20px";
     left.style['padding'] = "2px";
     left.style['width'] = "20px";
