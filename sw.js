@@ -2,8 +2,8 @@ self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('site').then(function(cache) {
      return cache.addAll([
-       '/',
-       '/index.html'
+       './',
+       './index.html'
      ]);
    })
  );
