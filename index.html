@@ -3,22 +3,13 @@
 <head>
 <title>Fortnite Challenges</title>
 <!-- <meta name="viewport" content= "width=device-width, user-scalable=no"> -->
-<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://andreymrovol.github.io/material/css/materialize.css">
-<script defer src="https://andreymrovol.github.io/material/js/bin/materialize.js"></script>
-<meta name="theme-color" content="#f57c00"/>
+<link rel="stylesheet" href="https://andreymrovol.github.io/material/material.css">
+<script defer src="https://andreymrovol.github.io/material/material.js"></script>
+<link rel="stylesheet" href="https://forthelper.github.io/assets/style.css">
 
+<meta name="theme-color" content="#f57c00"/>
 <link rel="manifest" href="./manifest.json">
 <style>
-
-body {
-  font-family: 'Poppins', sans-serif;
-  color: rgb(219, 219, 219);
-  margin: 0;
-  padding: 20px;
-  font-size: 13px;
-  background-color: #181818;
-}
 
 .r{
   display: flex;
@@ -78,6 +69,27 @@ span{
 .collection .collection-item {
   background-color: #121212;
 }
+
+.prog{
+  width: 40px;
+  height: 30px;
+  margin-bottom: 10px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+@keyframes collapse{
+  0%{
+    width: 100%;
+  }
+
+  100%{
+    opacity: 0;
+    background-color: green;
+    width: 0;
+  }
+}
 </style>
 </head>
 
@@ -86,16 +98,17 @@ span{
   <div class="leftnav">
 
     <ul class="collection" id="sidenavcollection"></ul>
+    <div id="footer"></div>
   </div>
 
   <div class="main">
 
     <div class="r">
-      <div class="cell">
+      <div class="cell" id="cellN">
         <h4>Normal Challenges</h4>
         <div id="Normal"></div>
       </div>
-      <div class="cell">
+      <div class="cell" id="cellP">
         <h4>Prestige Challenges</h4>
         <div id="Prestige"></div>
       </div>
@@ -105,6 +118,7 @@ span{
 
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
 <script src="./index.js"></script>
+<script src="https://forthelper.github.io/assets/footer.js"></script>
 
 <script>
 if('serviceWorker' in navigator) {

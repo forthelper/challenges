@@ -9,7 +9,7 @@
           "lang": "en-US",
           "icons": [
           {
-            "src": "icon.png",
+            "src": "https://forthelper.github.io/assets/icon.png",
             "sizes": "512x512",
             "type": "image/png"
           }
