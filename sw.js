@@ -3,7 +3,8 @@ self.addEventListener('install', function(e) {
    caches.open('site').then(function(cache) {
      return cache.addAll([
        './',
-       './index.html'
+       './index.html',
+       'https://andreymrovol.github.io/fortnitechallenges/challenges.json'
      ]);
    })
  );
