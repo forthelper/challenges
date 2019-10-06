@@ -31,6 +31,15 @@ function dataReady(data){
     left.style['line-height'] = "20px";
     left.style['text-align'] = "center";
 
+    if(getStatus(i, "n") == 7 && getStatus(i, "p") == 7){
+      left.style['background-color'] = "#2e7d32";
+      // sli.style['animation-name'] = "collapse"
+      // sli.style['animation-duration'] = '2s';
+      // sli.style['animation-fill-mode'] = "forwards"
+//      sli.style['animation-']
+  //    sli.style['display'] = 'none';
+    }
+
     let onc = "loadWeek(" + i + ")";
 
     sli.setAttribute('onclick', onc);
@@ -87,8 +96,19 @@ function loadWeek(week){
   $(".active").removeClass("active");
   $("#s" + week).addClass("active")
 
+  $("#cellN").css('background-color', '')
+  $("#cellP").css('background-color', '')
+
   $("#Normal").html("").append(makeListFromArray(normal, week, "n"));
   $("#Prestige").html("").append(makeListFromArray(prestige, week, "p"));
+
+  // if(getStatus(week, "n") == "7"){
+  //   $("#cellN").css("background-color", "#2e7d32")
+  // }
+  //
+  // if(getStatus(week, "p") == "7"){
+  //   $("#cellP").css("background-color", "#2e7d32")
+  // }
 
   loadCheckboxes();
 }
@@ -120,4 +140,21 @@ function loadCheckboxes(){
   for (i = 0; i < checkboxes.length; i++) {
        checkboxes[i].checked = localStorage.getItem(checkboxes[i].value) === 'true' ? true:false;
     }
+}
+
+function getStatus(week, type){
+  let searchFor = week + "/" + type + "/";
+  let checked = 0;
+
+  for(var i=0; i<7; i++){
+    let item = localStorage.getItem(searchFor + i);
+
+    if(item == "true"){
+      checked++;
+    }
+
+    console.log(item);
+  }
+
+  return checked;
 }
