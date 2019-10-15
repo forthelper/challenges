@@ -112,6 +112,7 @@ function loadWeek(week){
   // }
 
   loadCheckboxes();
+  // starMap(week);
 }
 
 // On checkbox change update all
@@ -160,4 +161,10 @@ function getStatus(week){
   return checked;
 }
 
-console.warn("working")
+function starMap(week){
+  let hyperlink = document.createElement('a');
+  hyperlink.href = "http://forthelper.github.io/map/?locations/" + "star" + week + ".json"
+  hyperlink.innerHTML = "Map locations"
+
+  $("#link").html("").append(hyperlink);
+}
