@@ -5,8 +5,9 @@ var sidenavList = $("#sidenavcollection");
 // Transform JSON data into ready form
 function dataReady(data){
   challengesJSON = data;
+  console.log(challengesJSON)
 
-  for(var i=1; i<=10; i++){
+  for(var i=1; i<=3; i++){
     let sli = document.createElement('a');
     sli.innerHTML = data[i]["Title"];
     sli.className = "collection-item waves-effect"
@@ -14,7 +15,7 @@ function dataReady(data){
 
     let l = localStorage.getItem('progress' + i);
     if(l == null){
-      l = 14;
+      l = 11;
     }
 
     let left = document.createElement('span');
@@ -31,7 +32,7 @@ function dataReady(data){
     left.style['line-height'] = "20px";
     left.style['text-align'] = "center";
 
-    if(getStatus(i, "n") == 7 && getStatus(i, "p") == 7){
+    if(getStatus(i) == 11){
       left.style['background-color'] = "#2e7d32";
       // sli.style['animation-name'] = "collapse"
       // sli.style['animation-duration'] = '2s';
@@ -53,7 +54,7 @@ function dataReady(data){
 }
 
 // Transform array into ul
-function makeListFromArray(array, week, type){
+function makeListFromArray(array, week){
 
 var ul = document.createElement('ul');
   for(var i=0; i<array.length; i++){
@@ -64,7 +65,7 @@ var ul = document.createElement('ul');
     label.className = "waves-effect bt"
     check.setAttribute("type", "checkbox");
     check.className = "filled-in";
-    check.setAttribute("value", week + "/" + type + "/" + i)
+    check.setAttribute("value", week + "/" + i)
     check.setAttribute("onchange", "setCheckboxes()")
     let sp = document.createElement("span");
 
@@ -82,7 +83,7 @@ var ul = document.createElement('ul');
 }
 
 // Get all challenges in JSON form
-$.getJSON( "https://andreymrovol.github.io/fortnitechallenges/challenges.json", function( data ) {
+$.getJSON( "https://forthelper.github.io/assets/challenges/all.json", function( data ) {
   dataReady(data);
 });
 
@@ -90,17 +91,17 @@ $.getJSON( "https://andreymrovol.github.io/fortnitechallenges/challenges.json", 
 function loadWeek(week){
   let w = challengesJSON[week];
 
-  let normal = w["Normal"];
-  let prestige = w["Prestige"]
+  let normal = w["Challenges"];
+//  let prestige = w["Prestige"]
 
   $(".active").removeClass("active");
   $("#s" + week).addClass("active")
 
   $("#cellN").css('background-color', '')
-  $("#cellP").css('background-color', '')
+//  $("#cellP").css('background-color', '')
 
-  $("#Normal").html("").append(makeListFromArray(normal, week, "n"));
-  $("#Prestige").html("").append(makeListFromArray(prestige, week, "p"));
+  $("#Normal").html("").append(makeListFromArray(normal, week));
+//  $("#Prestige").html("").append(makeListFromArray(prestige, week, "p"));
 
   // if(getStatus(week, "n") == "7"){
   //   $("#cellN").css("background-color", "#2e7d32")
@@ -129,8 +130,8 @@ function setCheckboxes(){
         w = checkboxes[i].value.split("/")[0];
     }
 
-    localStorage.setItem("progress" + w, (14 - amount));
-    $("#l"+w).html((14 - amount))
+    localStorage.setItem("progress" + w, (11 - amount));
+    $("#l"+w).html((11 - amount))
 }
 
 // Load checkboxes on page load
@@ -142,19 +143,21 @@ function loadCheckboxes(){
     }
 }
 
-function getStatus(week, type){
-  let searchFor = week + "/" + type + "/";
+function getStatus(week){
+  let searchFor = week + "/";
   let checked = 0;
 
-  for(var i=0; i<7; i++){
+  for(var i=0; i<11; i++){
     let item = localStorage.getItem(searchFor + i);
 
     if(item == "true"){
       checked++;
     }
 
-    console.log(item);
+//    console.log(item);
   }
 
   return checked;
 }
+
+console.warn("working")
