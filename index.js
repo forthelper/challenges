@@ -7,20 +7,21 @@ function dataReady(data){
   challengesJSON = data;
   console.log(challengesJSON)
 
-  for(var i=1; i<=3; i++){
+  for(item in data){
+    console.warn(item)
     let sli = document.createElement('a');
-    sli.innerHTML = data[i]["Title"];
+    sli.innerHTML = data[item]["Title"];
     sli.className = "collection-item waves-effect"
-    sli.id = "s" + i;
+    sli.id = "s" + item;
 
-    let l = localStorage.getItem('progress' + i);
+    let l = localStorage.getItem('progress' + item);
     if(l == null){
       l = 11;
     }
 
     let left = document.createElement('span');
     left.innerHTML = "  " + l;
-    left.id = "l" + i;
+    left.id = "l" + item;
     left.style['color'] = "white";
     left.style['background-color'] = "#e65100";
     left.style['border-radius'] = "20px";
@@ -32,7 +33,7 @@ function dataReady(data){
     left.style['line-height'] = "20px";
     left.style['text-align'] = "center";
 
-    if(getStatus(i) == 11){
+    if(getStatus(item) == 11){
       left.style['background-color'] = "#2e7d32";
       // sli.style['animation-name'] = "collapse"
       // sli.style['animation-duration'] = '2s';
@@ -41,7 +42,7 @@ function dataReady(data){
   //    sli.style['display'] = 'none';
     }
 
-    let onc = "loadWeek(" + i + ")";
+    let onc = "loadWeek(" + item + ")";
 
     sli.setAttribute('onclick', onc);
     sli.appendChild(left);
